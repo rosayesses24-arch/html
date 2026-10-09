@@ -1,0 +1,94 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.fondo-azul {
+    background-color: darkblue;
+    padding: 10px;
+}
+
+.fondo-gris {
+    background-color: #444444;
+    padding: 10px;
+}
+
+.fondo-morado {
+    background-color: #4b0082;
+    padding: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+    padding: 5px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: black;
+    background-color: violet;
+    text-decoration: underline;
+}
+
+ul li:first-child {
+    font-weight: bold;
+    border-top: 2px solid violet;
+    padding: 5px;
+}
+
+ul li:last-child {
+    color: #ff6666;
+    border-bottom: 2px solid red;
+    padding: 5px;
+}
+
+.parrafo-interactivo {
+color: white;
+font-size: 18px;
+transition: 0.3s;
+}
+
+.parrafo-interactivo:hover {
+color: violet;
+font-size: 20px;
+}
+
+
+#footer {
+    margin-top: 40px;
+    padding: 15px;
+    border-top: 1px solid violet;
+}
+@font-face {
+font-family: "Dantene";
+src: url("fonts/dantene.otf") format("opentype");
+}
+
+h1 {
+font-family: "Dantene", sans-serif;
+text-shadow: 2px 2px 5px violet;
+}
+
+a {
+color: white;
+background-color: transparent;
+text-decoration: none;
+margin-right: 15px;
+padding: 5px;
+transition: 0.3s;
+}
+a:hover {
+    color: black;
+    background-color: violet;
+    text-decoration: underline;
+}
+
+.texto-mayusculas {
+text-transform: uppercase;
+}
+p {
+    text-align: justify;
+}
