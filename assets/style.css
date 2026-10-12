@@ -92,3 +92,9 @@ text-transform: uppercase;
 p {
     text-align: justify;
 }
+p{
+    background-color:beige;
+    border:5px ridge violet;
+    border-radius:10px;
+    padding:8px;
+}
