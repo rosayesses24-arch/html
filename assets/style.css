@@ -46,7 +46,6 @@ ul li:last-child {
 }
 
 .parrafo-interactivo {
-color: white;
 font-size: 18px;
 transition: 0.3s;
 }
@@ -92,9 +91,26 @@ text-transform: uppercase;
 p {
     text-align: justify;
 }
-p{
-    background-color:beige;
-    border:5px ridge violet;
-    border-radius:10px;
-    padding:8px;
+p {
+text-align: justify;
+border: 5px ridge violet;
+border-radius: 10px;
+padding: 8px;
+}
+
+.contenedor-fondo p {
+background-color: transparent;
+border: none;
+border-radius: 0;
+}
+.contenedor-fondo {
+    background-image: url("fondo.jpg");
+    background-repeat: no-repeat;
+    background-size: auto 80%;
+    background-position: center;
+    background-color: black;
+    min-height: 300px;
+    padding: 20px;
+    box-sizing: border-box;
+    color: white;
 }
