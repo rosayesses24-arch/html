@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi calculadora</title>
+
+    <style>
+        body {
+           background: #21182f; /* Fondo morado oscuro */
+        font-family: Arial, sans-serif; /* Tipo de letra */
+        display: flex; /* Permite acomodar los elementos */
+        justify-content: center; /* Centra horizontalmente */
+        align-items: center; /* Centra verticalmente */
+        min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+        margin: 0; /* Elimina los márgenes */
+    }
+
+    /* Diseño de la calculadora */
+    .calculadora {
+        background: #302340; /* Fondo morado */
+        padding: 25px; /* Espacio interior */
+        border-radius: 20px; /* Esquinas redondeadas */
+        width: 280px; /* Ancho de la calculadora */
+        box-shadow: 0 5px 20px #120c1b; /* Sombra exterior */
+    }
+
+    /* Título de la calculadora */
+    h1 {
+        color: #e0c4ff; /* Color lila */
+        text-align: center; /* Centra el texto */
+    }
+
+    /* Pantalla donde aparecen los números */
+    #calculadora_data {
+        background: #171020; /* Fondo oscuro */
+        color: white; /* Números blancos */
+        padding: 20px; /* Espacio interior */
+        border-radius: 10px; /* Bordes redondeados */
+        text-align: right; /* Alinea los números a la derecha */
+        font-size: 30px; /* Tamaño de los números */
+        margin-bottom: 15px; /* Espacio debajo de la pantalla */
+        overflow: hidden; /* Evita que el contenido sobresalga */
+    }
+
+    /* Distribución de los botones */
+    .body {
+        display: grid; /* Organiza los botones en una cuadrícula */
+        grid-template-columns: repeat(4, 1fr); /* Crea cuatro columnas iguales */
+        gap: 10px; /* Espacio entre los botones */
+    }
+
+    /* Diseño general de los botones */
+    button {
+        padding: 15px; /* Espacio interior */
+        border: none; /* Quita el borde */
+        border-radius: 10px; /* Redondea las esquinas */
+        background: #49345d; /* Fondo morado */
+        color: white; /* Texto blanco */
+        font-size: 20px; /* Tamaño del texto */
+        cursor: pointer; /* Muestra la manita al pasar el cursor */
+    }
+
+    /* Efecto al pasar el cursor por los botones */
+    button:hover {
+        background: #65418b; /* Cambia a un morado más claro */
+    }
+
+    /* Diseño de los botones de operaciones */
+    .operador {
+        background: #8055aa; /* Fondo morado más claro */
+    }
+
+    /* Diseño del botón de resultado */
+    .igual {
+        background: #c49af5; /* Fondo lila */
+        color: #21182f; /* Texto morado oscuro */
+    }
+
+    /* Diseño del botón para borrar */
+    .limpiar {
+        background: #9c629f; /* Fondo morado rosado */
+    }
+    </style>
+</head>
+
+<body>
+
+    <div class="calculadora">
+        <h1>Calculadora</h1>
+
+        <div id="calculadora_data">0</div>
+
+        <div class="body">
+            <button class="limpiar" value="C" onclick="_clear()">C</button>
+            <button onclick="addNumber(this.value)" value="7">7</button>
+            <button onclick="addNumber(this.value)" value="8">8</button>
+            <button onclick="addNumber(this.value)" value="9">9</button>
+
+            <button onclick="addNumber(this.value)" value="4">4</button>
+            <button onclick="addNumber(this.value)" value="5">5</button>
+            <button onclick="addNumber(this.value)" value="6">6</button>
+            <button class="operador" onclick="setOperation('+')">+</button>
+
+            <button onclick="addNumber(this.value)" value="1">1</button>
+            <button onclick="addNumber(this.value)" value="2">2</button>
+            <button onclick="addNumber(this.value)" value="3">3</button>
+            <button class="operador" onclick="setOperation('-')">−</button>
+
+            <button onclick="addNumber(this.value)" value="0">0</button>
+            <button onclick="addNumber(this.value)" value=".">.</button>
+            <button class="operador" onclick="setOperation('*')">×</button>
+            <button class="operador" onclick="setOperation('/')">÷</button>
+
+            <button class="igual" onclick="setOperation('=')">=</button>
+        </div>
+    </div>
+
+    <script>
+        var num1 = 0;
+        var num2 = 0;
+        var ope = "";
+        var nuevoNumero = false;
+
+        function _clear() {
+            let data = document.getElementById("calculadora_data");
+
+            data.innerHTML = "0";
+            num1 = 0;
+            num2 = 0;
+            ope = "";
+            nuevoNumero = false;
+        }
+
+        function addNumber(value) {
+            let data = document.getElementById("calculadora_data");
+
+            if (nuevoNumero) {
+                data.innerHTML = value === "." ? "0." : value;
+                nuevoNumero = false;
+            } else if (value === ".") {
+                if (!data.innerHTML.includes(".")) {
+                    data.innerHTML += ".";
+                }
+            } else if (data.innerHTML === "0") {
+                data.innerHTML = value;
+            } else {
+                data.innerHTML += value;
+            }
+        }
+
+        function setOperation(_ope) {
+            let data = document.getElementById("calculadora_data");
+
+            if (_ope === "=") {
+                if (ope === "") return;
+
+                num2 = parseFloat(data.innerHTML);
+
+                switch (ope) {
+                    case "+":
+                        data.innerHTML = num1 + num2;
+                        break;
+                    case "-":
+                        data.innerHTML = num1 - num2;
+                        break;
+                    case "*":
+                        data.innerHTML = num1 * num2;
+                        break;
+                    case "/":
+                        data.innerHTML = num2 === 0
+                            ? "Error"
+                            : num1 / num2;
+                        break;
+                }
+
+                ope = "";
+                nuevoNumero = true;
+            } else {
+                num1 = parseFloat(data.innerHTML);
+                ope = _ope;
+                nuevoNumero = true;
+            }
+        }
+    </script>
+
+</body>
+</html>
